@@ -4,6 +4,7 @@ resource "helm_release" "nats" {
   chart      = "nats"
   namespace  = var.namespace
   values     = var.values_nats
+  version    = var.versions
 }
 
 # below config based on your deployment but it sometimes needed when you get an error
@@ -14,7 +15,7 @@ resource "kubernetes_manifest" "servicemonitor_hh_staging_nats_hh_staging_nats_s
     "kind" = "ServiceMonitor"
     "metadata" = {
       "name" = "staging-nats-service-monitor"
-      "namespace" = "staging-nats"
+      "namespace" = var.namespace
     }
     "spec" = {
       "endpoints" = [
@@ -26,7 +27,7 @@ resource "kubernetes_manifest" "servicemonitor_hh_staging_nats_hh_staging_nats_s
       ]
       "namespaceSelector" = {
         "matchNames" = [
-          "staging-nats",
+          "${var.namespace}",
         ]
       }
       "selector" = {
