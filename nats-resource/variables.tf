@@ -7,3 +7,7 @@ variable "values_nats" {
   type        = list(string)
   description = "Values"
 }
+
+variable "version" {
+type = string
+}
