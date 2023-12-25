@@ -13,8 +13,8 @@ resource "kubernetes_manifest" "servicemonitor_hh_staging_nats_hh_staging_nats_s
     "apiVersion" = "monitoring.coreos.com/v1"
     "kind" = "ServiceMonitor"
     "metadata" = {
-      "name" = "hh-staging-nats-service-monitor"
-      "namespace" = "hh-staging-nats"
+      "name" = "staging-nats-service-monitor"
+      "namespace" = "staging-nats"
     }
     "spec" = {
       "endpoints" = [
@@ -26,12 +26,12 @@ resource "kubernetes_manifest" "servicemonitor_hh_staging_nats_hh_staging_nats_s
       ]
       "namespaceSelector" = {
         "matchNames" = [
-          "hh-staging-nats",
+          "staging-nats",
         ]
       }
       "selector" = {
         "matchLabels" = {
-          "app.kubernetes.io/instance" = "hh-staging-prometheus"
+          "app.kubernetes.io/instance" = "staging-prometheus"
           "app.kubernetes.io/name" = "prometheus"
         }
       }
